@@ -1,7 +1,4 @@
-# INFO478-Group-6-Final-Project
-This repository is for the final project of INFO478
-
-# Student Alcohol Consumption Project
+# Project Title
 *This project was created for the purpose of INFO478 final project. It explores trends of deaths count, grouped by various factors including state and causes, and its relationship with the deaths count for Coronavirus disease (COVID-19).*
 
 
@@ -16,15 +13,15 @@ This repository is for the final project of INFO478
 
 1. [link1](link 1)
 
-**description about the project**
+  **description about the project**
 
 2. [link 2](link 2)
 
-**description about the project**
+  **description about the project**
 
 3. [link 3](link 3)
     
-**description about the project**
+  **description about the project**
 
 
 #### **What data-driven questions do we hope to answer about this domain and how?** 
@@ -69,13 +66,17 @@ This repository is for the final project of INFO478
 ## Technical Description
 
 **Format of Final Product**
+
 For this project, we are planning to have a Shiny app for the final product. We believe that Shiny app will be the most interactive format for the final output since it can combine interactive plots, rendered texts, widgets, and customized styles. With our large data sets, we can definitely make use of these features to give better visualization and analysis to the audience.
 
 **Data Collection / Management Challenges**
+
 With our large data sets, there will definitely be some challenges posted. One of them includes cleaning the data set and reshaping it to a suitable form for the purpose of analysis and visualizations. Another issue that might arise is the large number of features. While this might be beneficial in terms of data exploration, large number of features might result in higher complexity within data. Thus, one of our goals before performing data analysis / visualizations is to wrangle the raw data first.
 
 **Necessary Technical Skills**
+
 Since we are creating a Shiny app for the final product, we need a variety of skills. This ranges from basic data wrangling skills, including the ability to use some packages like `dplyr`, to skills on data visualization packages like `ggplot` and `plotly`. We also need to learn on how to create a Shiny app which involves understanding what goes to the server and ui side. Most of us may have been exposed to these skills from earlier courses, but there are definitely some rooms to continue exploring and learning from these packages.
 
 **Major Challenges**
+
 In regard to the overall structure of our team, our members have pretty hectic schedule since most of us are working part-time. However, we are arranging our schedule and will decide on a weekly 1-2 hours meeting over Discord in order to keep updated with our progress and individual task. Additionally, another challenge is that if our proposed questions for this project are too broad. As a result, we plan to get feedbacks from TA as well as Prof. Burkart in order to reflect and update our project proposal before we start performing the analysis.
