@@ -11,15 +11,15 @@
 
 #### **What other examples of data driven projects related to this domain?**
 
-1. [link1](link 1)
+1. [The Pandemic's True Death Toll Article](https://www.nature.com/articles/d41586-022-00104-8)
 
   **description about the project**
 
-2. [link 2](link 2)
+2. [Effect of COVID-19 in Life Expectancy Paper](https://www.bmj.com/content/373/bmj.n1343)
 
   **description about the project**
 
-3. [link 3](link 3)
+3. [Harvard's Air Pollution and COVID-19 Mortality in the United States paper](https://projects.iq.harvard.edu/covid-pm/home)
     
   **description about the project**
 
@@ -51,17 +51,10 @@
   
 #### **Number of observations (rows) and features (columns) in our data**
 
-1. 396 observations and 33 features **Update this**
-2. 278,239 observations and 34 features **update this**
+1. The [Weekly Provisional Counts of Deaths by State and Causes 2020 - 2022](https://data.cdc.gov/NCHS/Weekly-Provisional-Counts-of-Deaths-by-State-and-S/muzy-jte6) data set contains **5832 observations and 35 features**
 
+2. The [Provisional COVID-19 Deaths by Sex and Age 2019 - 2022](https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku) data set contains **79900 observations and 16 features**
 
-#### **Questions (from above) that can be answered using the data in this dataset**
-
-1. 
-
-2. 
-
-3.
 
 ## Technical Description
 
