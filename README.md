@@ -1,4 +1,7 @@
-# Project Title
+# COVID-19 and Other Causes Relationship in Deaths Count
+
+### Alan Zheng, Ivanna Maxwell, Kyle Sorstokke
+
 *This project was created for the purpose of INFO478 final project. It explores trends of deaths count, grouped by various factors including state and causes, and its relationship with the deaths count for Coronavirus disease (COVID-19).*
 
 
