@@ -25,17 +25,17 @@
 
 
 #### **What data-driven questions do we hope to answer about this domain and how?** 
-1. question 1
+1. Where does COVID-19 rank related to other long term causes grouped by specific factors such as location, age group, gender?
       
-    + how to answer question 1 (description on how we can approach the data set in order to answer question 1)
+    + For this question, grouping the data set according to specific factors like gender, age groups, and location would be the first step. Then, we would wrangle the data and assign ranks to different causes depending on the total death counts.  Finally, plotting the result will give ideas on how these different causes relate to the overall trend of death counts
 
-2. question 2
+2. Is there any correlations present between COVID-19 deaths rate and deaths caused by respiratory illnesses? How is the trend across different groups?
       
-    + how to answer question 2 (description on how we can approach the data set in order to answer question 2)
+    + For this question, we will start by aggregating deaths for each cause, with analyses grouped by region, time, and a combination of the two. This will present a picture of how the causes compare geographically and chronologically, which we can use in basic regression models to determine any potential correlations between different causes.
 
-3. question 3
+3. How is the trend of COVID-19 deaths relate to deaths caused by other groups over time? 
       
-    + how to answer question 3 (description on how we can approach the data set in order to answer question 3)
+    + For the third question, we are aiming to see how different causes contribute to death count over time from the year 2020 - present. Similarly to the first question, grouping the data set based on causes and certain period (daily, monthly, or quarterly) will be the first step. Then, we can further explore the data and decide on certain features that we want to visualize over time. This can include but not limited to total death counts and average death counts. Finally, we can plot a time series chart to visualize the trend over time.
 
 ## Finding Data
 
@@ -45,7 +45,7 @@
   
     **Data set description**
   
-2. [Provisional COVID-19 Deaths by Sex and Age 2019 - 2022](https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku)
+2. [Provisional COVID-19 Deaths by Sex and Age 2020 - 2022](https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku)
   
     **Data set description**
   
@@ -53,7 +53,7 @@
 
 1. The [Weekly Provisional Counts of Deaths by State and Causes 2020 - 2022](https://data.cdc.gov/NCHS/Weekly-Provisional-Counts-of-Deaths-by-State-and-S/muzy-jte6) data set contains **5832 observations and 35 features**
 
-2. The [Provisional COVID-19 Deaths by Sex and Age 2019 - 2022](https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku) data set contains **79900 observations and 16 features**
+2. The [Provisional COVID-19 Deaths by Sex and Age 2020 - 2022](https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku) data set contains **79900 observations and 16 features**
 
 
 ## Technical Description
