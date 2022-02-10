@@ -14,15 +14,15 @@ Learning more about the causes and pattern behind each death count is something 
 
 1. [The Pandemic's True Death Toll Article](https://www.nature.com/articles/d41586-022-00104-8)
 
-  This article summarizes research, along with data visualizations, about the often overlooked excess mortality connected to COVID-19. This concept measures the death toll by comparing actual to expected deaths, rather than simply counting the deaths with COVID-19 as a listed cause. While this method can be complicated and imperfect, it better encapsulates the overall impact of the pandemic on mortality.
+    This article summarizes research, along with data visualizations, about the often overlooked excess mortality connected to COVID-19. This concept measures the death toll by comparing actual to expected deaths, rather than simply counting the deaths with COVID-19 as a listed cause. While this method can be complicated and imperfect, it better encapsulates the overall impact of the pandemic on mortality.
 
 2. [Effect of COVID-19 in Life Expectancy Paper](https://www.bmj.com/content/373/bmj.n1343)
 
-  This study looks at high-income countries and their life expectancies over the past decade. It analyzes trends in life expectancy over the pre-covid period since 2010, as well as during the pandemic. Including an analysis of US patterns by race and ethnicity, the study compares the United States to peer nations in an effort to better understand success of pandemic response. Similar to the first project we listed, this research focuses more on the entire impact of the pandemic, rather than just the exact number of deaths.
+    This study looks at high-income countries and their life expectancies over the past decade. It analyzes trends in life expectancy over the pre-covid period since 2010, as well as during the pandemic. Including an analysis of US patterns by race and ethnicity, the study compares the United States to peer nations in an effort to better understand success of pandemic response. Similar to the first project we listed, this research focuses more on the entire impact of the pandemic, rather than just the exact number of deaths.
 
 3. [Harvard's Air Pollution and COVID-19 Mortality in the United States paper](https://projects.iq.harvard.edu/covid-pm/home)
   
-  This project looks at the potential relationship between air quality and severity of COVID-19. The overall goal is to better understand and respond to the pandemic and similar scenarios by creating a clearer picture of comorbidity factors. The study found a positive correlation between air pollutant exposure and severity of covid, which is important information in the fight against pandemic mortality overall.
+    This project looks at the potential relationship between air quality and severity of COVID-19. The overall goal is to better understand and respond to the pandemic and similar scenarios by creating a clearer picture of comorbidity factors. The study found a positive correlation between air pollutant exposure and severity of covid, which is important information in the fight against pandemic mortality overall.
 
 #### **What data-driven questions do we hope to answer about this domain and how?**
 
@@ -43,12 +43,10 @@ Learning more about the causes and pattern behind each death count is something 
 
 1. [Weekly Provisional Counts of Deaths by State and Causes 2020 - 2022](https://data.cdc.gov/NCHS/Weekly-Provisional-Counts-of-Deaths-by-State-and-S/muzy-jte6)
 
-   ***Data set description***
    The dataset introduced data about weekly provisional counts of deaths by the state of occurrence and selected underlying causes of death for 2020 to 2022. The dataset is provided by National Center for Health Statistics and accessed from [data.cdc.gov](data.cdc.gov) website. It needs to note that this report do not represent all deaths that occurred between 2020 and 2022.
 
 2. [Provisional COVID-19 Deaths by Sex and Age 2020 - 2022](https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku)
 
-   ***Data set description***
    The dataset provided information related to deaths that are involving coronavirus disease (2019), pneumonia, and influenza by sex, age group, and jurisdiction of occurrence. It is provided by National Center for health Statistics and is accessiable on the [data.cdc.gov](data.cdc.gov) website. It needs to note that the age group variable within this dataset range from 0 to 64.
 
 #### **Number of observations (rows) and features (columns) in our data**

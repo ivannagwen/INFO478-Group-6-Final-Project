@@ -167,9 +167,12 @@ pre code {
 </div>
 
 
-<div id="project-title" class="section level1">
-<h1>Project Title</h1>
+<div id="covid-19-and-other-causes-relationship-in-deaths-count" class="section level1">
+<h1>COVID-19 and Other Causes Relationship in Deaths Count</h1>
+<div id="alan-zheng-ivanna-maxwell-kyle-sorstokke" class="section level3">
+<h3>Alan Zheng, Ivanna Maxwell, Kyle Sorstokke</h3>
 <p><em>This project was created for the purpose of INFO478 final project. It explores trends of deaths count, grouped by various factors including state and causes, and its relationship with the deaths count for Coronavirus disease (COVID-19).</em></p>
+</div>
 <div id="project-description" class="section level2">
 <h2>Project Description</h2>
 <div id="why-are-we-interested-in-this-fielddomain" class="section level4">
@@ -179,32 +182,28 @@ pre code {
 <div id="what-other-examples-of-data-driven-projects-related-to-this-domain" class="section level4">
 <h4><strong>What other examples of data driven projects related to this domain?</strong></h4>
 <ol style="list-style-type: decimal">
-<li><a href="https://www.nature.com/articles/d41586-022-00104-8">The Pandemic’s True Death Toll Article</a></li>
+<li><p><a href="https://www.nature.com/articles/d41586-022-00104-8">The Pandemic’s True Death Toll Article</a></p>
+<p>This article summarizes research, along with data visualizations, about the often overlooked excess mortality connected to COVID-19. This concept measures the death toll by comparing actual to expected deaths, rather than simply counting the deaths with COVID-19 as a listed cause. While this method can be complicated and imperfect, it better encapsulates the overall impact of the pandemic on mortality.</p></li>
+<li><p><a href="https://www.bmj.com/content/373/bmj.n1343">Effect of COVID-19 in Life Expectancy Paper</a></p>
+<p>This study looks at high-income countries and their life expectancies over the past decade. It analyzes trends in life expectancy over the pre-covid period since 2010, as well as during the pandemic. Including an analysis of US patterns by race and ethnicity, the study compares the United States to peer nations in an effort to better understand success of pandemic response. Similar to the first project we listed, this research focuses more on the entire impact of the pandemic, rather than just the exact number of deaths.</p></li>
+<li><p><a href="https://projects.iq.harvard.edu/covid-pm/home">Harvard’s Air Pollution and COVID-19 Mortality in the United States paper</a></p>
+<p>This project looks at the potential relationship between air quality and severity of COVID-19. The overall goal is to better understand and respond to the pandemic and similar scenarios by creating a clearer picture of comorbidity factors. The study found a positive correlation between air pollutant exposure and severity of covid, which is important information in the fight against pandemic mortality overall.</p></li>
 </ol>
-<p><strong>description about the project</strong></p>
-<ol start="2" style="list-style-type: decimal">
-<li><a href="https://www.bmj.com/content/373/bmj.n1343">Effect of COVID-19 in Life Expectancy Paper</a></li>
-</ol>
-<p><strong>description about the project</strong></p>
-<ol start="3" style="list-style-type: decimal">
-<li><a href="https://projects.iq.harvard.edu/covid-pm/home">Harvard’s Air Pollution and COVID-19 Mortality in the United States paper</a></li>
-</ol>
-<p><strong>description about the project</strong></p>
 </div>
 <div id="what-data-driven-questions-do-we-hope-to-answer-about-this-domain-and-how" class="section level4">
 <h4><strong>What data-driven questions do we hope to answer about this domain and how?</strong></h4>
 <ol style="list-style-type: decimal">
-<li><p>question 1</p>
+<li><p>Where does COVID-19 rank related to other long-term causes grouped by specific factors such as location, age group, gender?</p>
 <ul>
-<li>how to answer question 1 (description on how we can approach the data set in order to answer question 1)</li>
+<li>For this question, grouping the data set according to specific factors like gender, age groups, and location would be the first step. Then, we would wrangle the data and assign ranks to different causes depending on the total death counts. Finally, plotting the result will give ideas on how these different causes relate to the overall trend of death counts</li>
 </ul></li>
-<li><p>question 2</p>
+<li><p>Is there any correlations present between COVID-19 deaths rate and deaths caused by respiratory illnesses? How is the trend across different groups?</p>
 <ul>
-<li>how to answer question 2 (description on how we can approach the data set in order to answer question 2)</li>
+<li>For this question, we will start by aggregating deaths for each cause, with analyses grouped by region, time, and a combination of the two. This will present a picture of how the causes compare geographically and chronologically, which we can use in basic regression models to determine any potential correlations between different causes.</li>
 </ul></li>
-<li><p>question 3</p>
+<li><p>How is the trend of COVID-19 deaths related to deaths caused by other groups over time?</p>
 <ul>
-<li>how to answer question 3 (description on how we can approach the data set in order to answer question 3)</li>
+<li>For the third question, we are aiming to see how different causes contribute to death count over time from the year 2020 to the present. Similarly to the first question, grouping the data set based on causes and certain periods (daily, monthly, or quarterly) will be the first step. Then, we can further explore the data and decide on certain features that we want to visualize over time. This can include but is not limited to total death counts and average death counts. Finally, we can plot a time series chart to visualize the trend over time.</li>
 </ul></li>
 </ol>
 </div>
@@ -215,29 +214,29 @@ pre code {
 <h4><strong>Data sources</strong></h4>
 <ol style="list-style-type: decimal">
 <li><p><a href="https://data.cdc.gov/NCHS/Weekly-Provisional-Counts-of-Deaths-by-State-and-S/muzy-jte6">Weekly Provisional Counts of Deaths by State and Causes 2020 - 2022</a></p>
-<p><strong>Data set description</strong></p></li>
-<li><p><a href="https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku">Provisional COVID-19 Deaths by Sex and Age 2019 - 2022</a></p>
-<p><strong>Data set description</strong></p></li>
+<p>The dataset introduced data about weekly provisional counts of deaths by the state of occurrence and selected underlying causes of death for 2020 to 2022. The dataset is provided by National Center for Health Statistics and accessed from <a href="data.cdc.gov">data.cdc.gov</a> website. It needs to note that this report do not represent all deaths that occurred between 2020 and 2022.</p></li>
+<li><p><a href="https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku">Provisional COVID-19 Deaths by Sex and Age 2020 - 2022</a></p>
+<p>The dataset provided information related to deaths that are involving coronavirus disease (2019), pneumonia, and influenza by sex, age group, and jurisdiction of occurrence. It is provided by National Center for health Statistics and is accessiable on the <a href="data.cdc.gov">data.cdc.gov</a> website. It needs to note that the age group variable within this dataset range from 0 to 64.</p></li>
 </ol>
 </div>
 <div id="number-of-observations-rows-and-features-columns-in-our-data" class="section level4">
 <h4><strong>Number of observations (rows) and features (columns) in our data</strong></h4>
 <ol style="list-style-type: decimal">
 <li><p>The <a href="https://data.cdc.gov/NCHS/Weekly-Provisional-Counts-of-Deaths-by-State-and-S/muzy-jte6">Weekly Provisional Counts of Deaths by State and Causes 2020 - 2022</a> data set contains <strong>5832 observations and 35 features</strong></p></li>
-<li><p>The <a href="https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku">Provisional COVID-19 Deaths by Sex and Age 2019 - 2022</a> data set contains <strong>79900 observations and 16 features</strong></p></li>
+<li><p>The <a href="https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku">Provisional COVID-19 Deaths by Sex and Age 2020 - 2022</a> data set contains <strong>79900 observations and 16 features</strong></p></li>
 </ol>
 </div>
 </div>
 <div id="technical-description" class="section level2">
 <h2>Technical Description</h2>
 <p><strong>Format of Final Product</strong></p>
-<p>For this project, we are planning to have a Shiny app for the final product. We believe that Shiny app will be the most interactive format for the final output since it can combine interactive plots, rendered texts, widgets, and customized styles. With our large data sets, we can definitely make use of these features to give better visualization and analysis to the audience.</p>
+<p>For this project, we are planning to have a Shiny app for the final product. We believe that the Shiny app will be the most interactive format for the final output since it can combine interactive plots, rendered texts, widgets, and customized styles. With our large data sets, we can definitely make use of these features to give better visualization and analysis to the audience.</p>
 <p><strong>Data Collection / Management Challenges</strong></p>
-<p>With our large data sets, there will definitely be some challenges posted. One of them includes cleaning the data set and reshaping it to a suitable form for the purpose of analysis and visualizations. Another issue that might arise is the large number of features. While this might be beneficial in terms of data exploration, large number of features might result in higher complexity within data. Thus, one of our goals before performing data analysis / visualizations is to wrangle the raw data first.</p>
+<p>With our large data sets, there will definitely be some challenges posted. One of them includes cleaning the data set and reshaping it to a suitable form for the purpose of analysis and visualizations. Another issue that might arise is a large number of features. While this might be beneficial in terms of data exploration, a large number of features might result in higher complexity within data. Thus, before performing data analysis/visualizations, one of our goals is to wrangle the raw Data first.</p>
 <p><strong>Necessary Technical Skills</strong></p>
-<p>Since we are creating a Shiny app for the final product, we need a variety of skills. This ranges from basic data wrangling skills, including the ability to use some packages like <code>dplyr</code>, to skills on data visualization packages like <code>ggplot</code> and <code>plotly</code>. We also need to learn on how to create a Shiny app which involves understanding what goes to the server and ui side. Most of us may have been exposed to these skills from earlier courses, but there are definitely some rooms to continue exploring and learning from these packages.</p>
+<p>Since we are creating a Shiny app for the final product, we need a variety of skills. This ranges from basic data wrangling skills, including the ability to use some packages like <code>dplyr</code>, to skills on data visualization packages like <code>ggplot</code> and <code>plotly</code>. We also need to learn how to create a Shiny app which involves understanding what goes to the server and UI side. Most of us may have been exposed to these skills from earlier courses, but there are definitely some rooms to continue exploring and learning from these packages.</p>
 <p><strong>Major Challenges</strong></p>
-<p>In regard to the overall structure of our team, our members have pretty hectic schedule since most of us are working part-time. However, we are arranging our schedule and will decide on a weekly 1-2 hours meeting over Discord in order to keep updated with our progress and individual task. Additionally, another challenge is that if our proposed questions for this project are too broad. As a result, we plan to get feedbacks from TA as well as Prof. Burkart in order to reflect and update our project proposal before we start performing the analysis.</p>
+<p>In regard to the overall structure of our team, our members have pretty hectic schedule since most of us are working part-time. However, we are arranging our schedule and will decide on a weekly 1-2 hours meeting over Discord in order to keep updated with our progress and individual task. Additionally, another challenge is if our proposed questions for this project are too broad. As a result, we plan to get feedback from TA as well as Prof. Burkart in order to reflect and update our project proposal before we start performing the analysis.</p>
 </div>
 </div>
 
