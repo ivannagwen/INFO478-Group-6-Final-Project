@@ -1,0 +1,27 @@
+---
+title: "Exploratory Analysis"
+author: "Alan Zheng, Ivanna Maxwell, Kyle Sorstokke"
+date: "2/21/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# source R files containing charts and analysis
+```
+
+## Introduction
+In this project, our team aims to explore the relationship between COVID-19 and other causes of deaths within the past 2 years. By combining different [data sets](https://github.com/ivannagwen/INFO478-Group-6-Final-Project/tree/main/data) and analyzing them, we can analyze different characteristics of deaths due to COVID-19 disease, identify who is at higher risk of deaths, and focus on certain resources that minimize the risk of deaths or exposure to COVID-19 disease. To be specific, here are the 3 questions we hope to answer throughout the project:
+
+1. Where does COVID-19 rank related to other long-term causes grouped by specific factors such as location, age group, gender?
+
+2. Is there any correlations present between COVID-19 deaths rate and deaths caused by respiratory illnesses? How is the trend across different groups?
+
+3. How is the trend of COVID-19 deaths related to deaths caused by other groups over time?
+
+In this exploratory report, we will mainly focus on visually and statistically assessing the distribution and relationship of various variables of our interest, which will be discussed below. As a result, we will use different statistical measures such as means, medians, and correlations, as well as different visualization tools including ggplot and plotly.
+
+## Distribution of Variables
+
+## Relationships Between Variables
