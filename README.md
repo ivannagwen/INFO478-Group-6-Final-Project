@@ -1,4 +1,4 @@
-# COVID-19 and Other Causes Relationship in Deaths Count
+# The Relationship Between COVID-19 and Other Causes of Deaths
 
 ### Alan Zheng, Ivanna Maxwell, Kyle Sorstokke
 
