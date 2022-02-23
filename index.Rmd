@@ -7,6 +7,14 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(lubridate)
+library(dygraphs)
+library(xts)
+
+
+death_count_data <- read.csv("data/death_count_2020_2022.csv")
+covid_data <- read.csv("data/covid19_2020_2022.csv")
 
 # source R files containing charts and analysis
 ```
@@ -39,11 +47,58 @@ In this exploratory report, we will mainly focus on visually and statistically a
 **Introduction to section** (what metrics are being plotted (+ description), objectives about relationships between variables)
 
 #### ** Visualization 1**
- - description about visualization 1
+```{r evolution, echo=FALSE}
+evo_data <- covid_data
+evo_data$Start.Date <- mdy(evo_data$Start.Date)
+evo_data <- evo_data %>%
+  filter(Group == "By Month",
+         State == "United States",
+         Sex == "All Sexes",
+         Age.Group == "All Ages")
+
+prep_data <- xts(x = evo_data$COVID.19.Deaths, order.by = evo_data$Start.Date)
+
+p <- dygraph(prep_data, main = "Covid 19 Evolution", ylab = "Total Death") %>%
+  dySeries("V1", label = "Death(All Sexes)") %>%
+  dyOptions(labelsUTC = TRUE, fillGraph=TRUE, fillAlpha=0.1, drawGrid = FALSE, colors="#D8AE5A") %>%
+  dyRangeSelector() %>%
+  dyCrosshair(direction = "vertical") %>%
+  dyHighlight(highlightCircleSize = 5, highlightSeriesBackgroundAlpha = 0.5, hideOnMouseOut = FALSE)  %>%
+  dyUnzoom() %>%
+  dyRoller(rollPeriod = 1)
+
+p
+ 
+```
+
+- description about visualization 1
  - insight 1
  - insight 2
- 
+
 #### ** Visualization 2**
+```{r compare,echo=FALSE}
+compare_data <- covid_data
+compare_data$Start.Date <- mdy(compare_data$Start.Date)
+compare_data <- compare_data %>%
+  filter(Group == "By Month",
+         State == "United States",
+         Sex == "All Sexes",
+         Age.Group == "All Ages") %>%
+  select(Start.Date, COVID.19.Deaths, Pneumonia.Deaths, Influenza.Deaths)
+rDeath <- xts(compare_data, order.by = compare_data$Start.Date)
+
+p2 <- dygraph(rDeath, main = "Respiratory Diseases Evolution", ylab = "Total Death") %>%
+  dyOptions(stepPlot = TRUE, fillGraph = TRUE) %>%
+  dyCrosshair(direction = "vertical") %>%
+  dyHighlight(highlightCircleSize = 5, highlightSeriesBackgroundAlpha = 0.5, hideOnMouseOut = FALSE)  %>%
+  dyUnzoom() %>%
+  dyLegend(width = 600) %>%
+  dyRoller(rollPeriod = 1)
+
+p2
+
+```
+
  - description about visualization 1
  - insight 1
  - insight 2
