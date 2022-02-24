@@ -33,13 +33,42 @@ In this exploratory report, we will mainly focus on visually and statistically a
 ## Distribution of Variables
 **Introduction to section** (what metrics are being plotted (+ description), what are the statistical measures, objectives)
 
+
 #### ** Visualization 1**
- - description about visualization 1
+
+```{r death_dist, echo=FALSE, warning=F}
+
+death_dist <- death_count_data %>%
+  filter(Jurisdiction.of.Occurrence=="United States") %>%
+  ggplot(aes(Natural.Cause)) +
+  geom_boxplot(na.rm=T) +
+  xlab("Weekly Natural Death Counts (National)")
+
+death_dist
+```
+
+ - Overview of total natural deaths through the timeframe of our data
  - insight 1
  - insight 2
  
 #### ** Visualization 2**
- - description about visualization 1
+
+
+```{r covid_dist, echo=FALSE, warning=F, message=F}
+gender <- covid_data %>%
+  filter(Age.Group == "All Ages", Sex != "All Sexes")
+
+gender_covid <- gender %>%
+  ggplot(mapping=aes(x=log(COVID.19.Deaths),color=Sex)) +
+  geom_density(na.rm=T)+
+  xlim(0,log(50000))+
+  xlab("Log COVID Death Counts")
+
+gender_covid
+```
+
+
+ - Log scale for comparison of gendered COVID death counts
  - insight 1
  - insight 2
 
