@@ -8,7 +8,11 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
+library(knitr)
+library(kableExtra)
+
 # source R files containing charts and analysis
+source('distribution_charts.R')
 source('relationship_charts.R')
 ```
 
@@ -21,31 +25,76 @@ In this project, our team aims to explore the relationship between COVID-19 and 
 
 3. How is the trend of COVID-19 deaths related to deaths caused by other groups over time?
 
-In this exploratory report, we will mainly focus on visually and statistically assessing the distribution and relationship of various variables of our interest, which will be discussed below. As a result, we will use different statistical measures such as means, medians, and correlations, as well as different visualization tools including ggplot and plotly.
+In this exploratory report, we will mainly focus on visually and statistically assessing the distribution and relationship of various variables of our interest, which will be discussed below. As a result, we will use different statistical measures such as means, medians, and correlations, as well as different visualization tools including `ggplot`, `plotly`, and `dygraphs`.
 
 ## Distribution of Variables
-**Introduction to section** (what metrics are being plotted (+ description), what are the statistical measures, objectives)
+In this section, we are going to investigate the distribution of the weekly death count due to natural cause, as well as the death count due to COVID-19 across gender. For the first plot, we are using data from the [Weekly Provisional Counts of Deaths data](https://data.cdc.gov/NCHS/Weekly-Provisional-Counts-of-Deaths-by-State-and-S/muzy-jte6), while for the second plot, we are using the [Provisional COVID-19 Deaths](https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku) data set. By investigating and comparing the distribution of death count, we will be able to statistically measure the total death count from the given data sets. This means getting the mean, median, minimum, and maximum value of a given metrics. Other than that, we can also analyze if there are discrepancies in the death count distribution across different metrics, which is gender in this case. The 2 metrics that we will use throughout this section are shown below,:
 
-#### ** Visualization 1**
- - description about visualization 1
- - insight 1
- - insight 2
+1. `Natural.Cause`: Death counts due to natural cause
+2. `Covid.19.Deaths`: Death counts due to COVID-19
+
+<br>
+
+### Weekly Natural Death Count Distribution
+
+In the first plot, we will look into how the weekly natural death count distribution. As described above, this means statistically investigating how the death count due to natural causes is distributed across the data set. As a result, plotting a box plot will be the most effective visualization for this.
+
+```{r death_dist, echo=FALSE, warning=F, fig.width = 10, fig.align='center'}
+death_dist_plot
+```
+
+<br>
+
+As seen from the above box plot, we can summarize the different quantiles in the given table below:
+```{r death_stats}
+options(scipen=999)
+kable(quantile(death_dist_data$Natural.Cause), col.names = c('Quantile Value')) %>%
+  kable_styling(full_width = F)
+mean_death <- round(mean(death_dist_data$Natural.Cause), 3)
+range_death <- range(death_dist_data$Natural.Cause)
+```
+
+Additionally, we also found out that the mean of death count is **`r as.numeric(mean_death)`**. Looking at the box plot, we can conclude that the weekly natural death count is right skewed because it is apparent that most of the area in the box is to the right of the median. This is also equivalent to saying that the weekly natural death count has a longer distribution in the right tail.
  
-#### ** Visualization 2**
- - description about visualization 1
- - insight 1
- - insight 2
+<br>
+
+### Density of Log Distribution of COVID-19 Death Counts Across Gender
+
+In this section, we are going to investigate the density of the log distribution of death counts due to COVID-19 across gender. The reason why we decided to plot the log of the death counts is because the given data is exponential. The plot below shows how the distribution differs between the 2 genders:
+
+<br>
+
+```{r covid_dist, echo=FALSE, warning=F, message=F, fig.width=10, fig.align='center', fig.height=6}
+gender_dist_plot
+```
+
+Similarly to the first plot, we also use different statistical measures to compare the mean, median, minimum, and maximum log of death count due to COVID-19 across the two genders. The table below sums up the calculation:
+
+<br>
+
+```{r covid_gender_stat}
+kable(gender_dist_stat, col.names =  c('Sex', 'Mean',
+                                       'Median',
+                                       'Minimum', 
+                                       'Maximum'),
+      caption = 'Statistical Measures of Log of COVID-19 Death Counts Across Gender') %>%
+  kable_styling(full_width = TRUE)
+```
+From the above plot and table, we can note that the distribution of the death counts across the two genders are similar to one another. This is shown by the similar bell shaped curve of the log death counts. 
+
+<br>
 
 ## Relationships Between Variables
 In this section, we aim to analyze the relationship between total deaths and different causes of deaths, including COVID-19, Pneumonia, and Influenza. In doing so, we first investigate the evolution of total deaths count due to COVID-19 in order to get a deeper understanding of when COVID-19 had the highest impact on total deaths count. Secondly, we also investigate the trend of total death count due to various respiratory diseases found in the data set. Below are the metrics used in visualizing the data found in the [Provisional COVID-19 Deaths](https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku) data set:
 
-1. `Covid.19.Deaths`: Deaths count involving COVID-19
-2. `Pneumonia.Deaths`: Deaths count due to Pneumonia
-3. `Influenza.Deaths`: Deaths count due to Influenza
+1. `Covid.19.Deaths`: Deaths counts due to COVID-19
+2. `Pneumonia.Deaths`: Deaths counts due to Pneumonia
+3. `Influenza.Deaths`: Deaths counts due to Influenza
 
 <br>
 
 ### Evolution of Total Deaths Count due to COVID-19
+
 ```{r evolution_plot, echo=FALSE, fig.width = 10, fig.align = 'center'}
 evolution_plot
 ```
@@ -54,6 +103,7 @@ The interactive evolution plot above shows the trend line of total deaths count 
 <br>
 
 ### Evolution of Total Deaths Count due to Respiratory Diseases
+
 ```{r comparison_plot,echo=FALSE, fig.width = 10, fig.align = 'center'}
 comparison_plot
 ```
