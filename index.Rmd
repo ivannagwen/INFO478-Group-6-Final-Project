@@ -7,16 +7,9 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-library(tidyverse)
-library(lubridate)
-library(dygraphs)
-library(xts)
-
-
-death_count_data <- read.csv("data/death_count_2020_2022.csv")
-covid_data <- read.csv("data/covid19_2020_2022.csv")
 
 # source R files containing charts and analysis
+source('relationship_charts.R')
 ```
 
 ## Introduction
@@ -44,61 +37,24 @@ In this exploratory report, we will mainly focus on visually and statistically a
  - insight 2
 
 ## Relationships Between Variables
-**Introduction to section** (what metrics are being plotted (+ description), objectives about relationships between variables)
+In this section, we aim to analyze the relationship between total deaths and different causes of deaths, including COVID-19, Pneumonia, and Influenza. In doing so, we first investigate the evolution of total deaths count due to COVID-19 in order to get a deeper understanding of when COVID-19 had the highest impact on total deaths count. Secondly, we also investigate the trend of total death count due to various respiratory diseases found in the data set. Below are the metrics used in visualizing the data found in the [Provisional COVID-19 Deaths](https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku) data set:
 
-#### ** Visualization 1**
-```{r evolution, echo=FALSE}
-evo_data <- covid_data
-evo_data$Start.Date <- mdy(evo_data$Start.Date)
-evo_data <- evo_data %>%
-  filter(Group == "By Month",
-         State == "United States",
-         Sex == "All Sexes",
-         Age.Group == "All Ages")
+1. `Covid.19.Deaths`: Deaths count involving COVID-19
+2. `Pneumonia.Deaths`: Deaths count due to Pneumonia
+3. `Influenza.Deaths`: Deaths count due to Influenza
 
-prep_data <- xts(x = evo_data$COVID.19.Deaths, order.by = evo_data$Start.Date)
+<br>
 
-p <- dygraph(prep_data, main = "Covid 19 Evolution", ylab = "Total Death") %>%
-  dySeries("V1", label = "Death(All Sexes)") %>%
-  dyOptions(labelsUTC = TRUE, fillGraph=TRUE, fillAlpha=0.1, drawGrid = FALSE, colors="#D8AE5A") %>%
-  dyRangeSelector() %>%
-  dyCrosshair(direction = "vertical") %>%
-  dyHighlight(highlightCircleSize = 5, highlightSeriesBackgroundAlpha = 0.5, hideOnMouseOut = FALSE)  %>%
-  dyUnzoom() %>%
-  dyRoller(rollPeriod = 1)
-
-p
- 
+### Evolution of Total Deaths Count due to COVID-19
+```{r evolution_plot, echo=FALSE, fig.width = 10, fig.align = 'center'}
+evolution_plot
 ```
+The interactive evolution plot above shows the trend line of total deaths count due to COVID-19 from the February 2020 - January 2022. The total death count is grouped by month and it represents counts across all genders and ages in the United States. As we can see from the plot above, the peak of the total death count due to COVID-19 was in the month of January 2021, followed by April 2020 and September 2021. These 3 peaks can be associated with the outbreak of new variants of COVID-19, such as Delta and Omicron, in the past 2 years. For instance, the Delta variant SARS-CoV-2 was first detected in India in October 2020, which was then quickly surged in December 2021. Many sources mentioned that the associated symptoms of Delta variant are much worse compared to the first and Omicron variant. As a result, it makes sense for the plot to show that the highest peak of total deaths related to COVID-19 was during January of 2021. For future research and analysis, it would be great to deep dive into the break down of total deaths count due to each COVID-19 variant, assuming we have the data. 
 
-- description about visualization 1
- - insight 1
- - insight 2
+<br>
 
-#### ** Visualization 2**
-```{r compare,echo=FALSE}
-compare_data <- covid_data
-compare_data$Start.Date <- mdy(compare_data$Start.Date)
-compare_data <- compare_data %>%
-  filter(Group == "By Month",
-         State == "United States",
-         Sex == "All Sexes",
-         Age.Group == "All Ages") %>%
-  select(Start.Date, COVID.19.Deaths, Pneumonia.Deaths, Influenza.Deaths)
-rDeath <- xts(compare_data, order.by = compare_data$Start.Date)
-
-p2 <- dygraph(rDeath, main = "Respiratory Diseases Evolution", ylab = "Total Death") %>%
-  dyOptions(stepPlot = TRUE, fillGraph = TRUE) %>%
-  dyCrosshair(direction = "vertical") %>%
-  dyHighlight(highlightCircleSize = 5, highlightSeriesBackgroundAlpha = 0.5, hideOnMouseOut = FALSE)  %>%
-  dyUnzoom() %>%
-  dyLegend(width = 600) %>%
-  dyRoller(rollPeriod = 1)
-
-p2
-
+### Evolution of Total Deaths Count due to Respiratory Diseases
+```{r comparison_plot,echo=FALSE, fig.width = 10, fig.align = 'center'}
+comparison_plot
 ```
-
- - description about visualization 1
- - insight 1
- - insight 2
+In the second interactive relationship chart, we are comparing the total deaths count due to different respiratory diseases, including Pneumonia, Influenza, and COVID-19. As we can see from the above plot, the bar charts across the various causes appear to show similar trends over time. However, it is worth noting that for the last 1 year, COVID-19 related total deaths count dominates Pneumonia related total deaths count only during the outbreak of the COVID-19 Omicron variant. This is shown by the higher height of the COVID-19 bar charts compared to the Pneumonia bar charts. This is indeed an interesting finding because it may inform us that the impact of COVID-19 disease on deaths is not as severe as previous year (2020) and we can expect the severity of Omicron variant is less than the other previous variants of COVID-19.
