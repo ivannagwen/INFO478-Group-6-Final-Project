@@ -1,8 +1,8 @@
 # Chart 1 
 # Where does COVID-19 rank related to other long-term causes grouped by specific factors such as location, age group, gender?
 
-covid_df <- read.csv('../../data/covid19_2020_2022.csv')
-death_df <- read.csv('../../data/death_count_2020_2022.csv')
+covid_df <- read.csv('../data/covid19_2020_2022.csv')
+death_df <- read.csv('../data/death_count_2020_2022.csv')
 
 # wrangle data
 rank_df <- covid_df %>%

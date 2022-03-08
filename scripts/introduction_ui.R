@@ -13,7 +13,7 @@ intro_tab <- tabPanel(
           "To be specific, here are the 3 questions we hope to answer throughout the project:")),
   br(),
   tags$ol(
-    tags$li("Where does COVID-19 rank related to other long-term causes grouped by specific factors such as location, age group, gender?"),
+    tags$li("Where does COVID-19 rank related to other long-term causes grouped by state for a specific time period?"),
     tags$li("Is there any correlations present between COVID-19 deaths rate and deaths caused by respiratory illnesses? How is the trend across different groups?"),
     tags$li("How is the trend of COVID-19 deaths related to deaths caused by other groups over time?")
   ),
@@ -65,12 +65,12 @@ intro_tab <- tabPanel(
                  tags$td("Start Date / End Date")
                ),
                tags$tr(
-                 tags$td("Sex"),
+                 tags$td("Year"),
                  tags$td("Pneumonia Deaths"),
                  tags$td("COVID-19 and Pneumonia Deaths (Sum of deaths)")
                ),
                tags$tr(
-                 tags$td("Age Group"),
+                 tags$td("COVID-19 and Other Causes Deaths Count"),
                  tags$td("Influenza Deaths"),
                  tags$td("Influenza Deaths")
                )
