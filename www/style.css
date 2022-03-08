@@ -4,6 +4,11 @@
   margin-right: auto;
 }
 
+.active a .header {
+  color: #E8D3A2;
+  text-align: center;
+}
+
 .link{
   display: none;
 }

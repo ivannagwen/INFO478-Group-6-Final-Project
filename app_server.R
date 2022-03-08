@@ -3,7 +3,7 @@ server <- function(input, output) {
   covid_df <- read.csv('data/covid19_2020_2022.csv')
   death_df <- read.csv('data/death_count_2020_2022.csv')
   
-  
+  ## EVOLUTION TAB ##
   compared <- reactive({
     compare_data <- covid_df
     compare_data$Start.Date <- mdy(compare_data$Start.Date)
@@ -18,7 +18,7 @@ server <- function(input, output) {
   })
   
   total_covid_pneu <- reactive({
-    evo_data <- covid_data
+    evo_data <- covid_df
     evo_data$Start.Date <- mdy(evo_data$Start.Date)
     evo_data <- evo_data %>%
       filter(Group == input$timeSelect,
@@ -113,4 +113,25 @@ server <- function(input, output) {
 
     return(rank_plot)
   })
+  
+  ## TAKEAWAYS TABLE OUTPUT ##
+  output$summary_table <- renderTable({
+    data_stats <- covid_df %>%
+      pivot_longer(cols = c('COVID.19.Deaths', 'Total.Deaths', 'Pneumonia.Deaths',
+                            'Pneumonia.and.COVID.19.Deaths', 'Influenza.Deaths'),
+                   names_to = 'death_cause') %>%
+      mutate(death_cause = str_replace_all(death_cause, '\\.', ' ')) %>%
+      filter(State != 'United States') %>%
+      group_by(death_cause) %>%
+      summarize('Minimum Death Count' = min(value, na.rm = TRUE),
+                'Maximum Death Count' = max(value, na.rm = TRUE),
+                'Average_Death_Count' = mean(value, na.rm = TRUE),
+                'Median Death Count' =  median(value, na.rm = TRUE),
+                'Standard Deviation' = sd(value, na.rm = TRUE)) %>%
+      arrange(-Average_Death_Count) %>%
+      rename('Cause of Deaths' = 'death_cause',
+             'Average Death Count' = 'Average_Death_Count')
+    
+    return(data_stats)
+  }, align = 'c')
 }

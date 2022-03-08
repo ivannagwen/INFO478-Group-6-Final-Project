@@ -25,7 +25,7 @@ intro_tab <- tabPanel(
           "To be specific, here are the 3 questions we hope to answer throughout the project:")),
   br(),
   tags$ol(
-    tags$li("How does the total death count due to COVID-19 differ from other long term causes across State in different time period?"),
+    tags$li("How does the total death count due to COVID-19 differ from other long term causes across state in different time period?"),
     tags$li("Is there any correlations present between COVID-19 deaths rate and deaths caused by respiratory illnesses? How is the trend across different groups?"),
     tags$li("How is the trend of COVID-19 deaths related to deaths caused by other groups over time?")
   ),
@@ -126,8 +126,19 @@ death_cause_widget <- radioButtons(
 # Rank tab
 rank_tab <- tabPanel(
   "COVID-19 vs. Other Long Term Death Causes Rank by State",
-  titlePanel("How do relationships affect the alcohol consumption
-             of students?"),
+  titlePanel("How does the total death count due to COVID-19 differ from other long term causes across state in different time period?"),
+  p(paste("The purpose of this chart is to compare the total death count caused by COVID-19 and other long term causes across different states.",
+          "Here, we use the following variables from the given data sets in order to aggregate and plot the map below:")),
+  br(),
+  tags$ol(
+    tags$li(paste('Year:', 'Range of year to plot, from 2020 - 2022')),
+    tags$li(paste('Cause of Deaths:', 'COVID-19, Influenza, Pneumonia, Both COVID-19 and Pneumonia, and all causes')),
+    tags$li(paste('State:', 'States name in United States'))
+  ),
+  br(),
+  p(paste('On a side note, some states may have missing data for certain year period, which is depicted by the grey colored map area.',
+          'We also use the log of death counts for scaling the colors of our map in order to clearly visualize the discrepancy across each state.')),
+  br(),
   sidebarLayout(
     sidebarPanel(year_widget,
                  death_cause_widget,
@@ -136,41 +147,87 @@ rank_tab <- tabPanel(
   )
 )
 
-# Evolution Tab
+#####################
+### EVOLUTION TAB ###
+#####################
 age_group_choice <- na.omit(unique(covid_df$Age.Group))
 state_choice <- na.omit(unique(covid_df$State))
 
 evolution_tab <- tabPanel(
   "Trend of COVID-19 deaths vs Other Respiratory Diseases' deaths",
+  titlePanel("How is the trend of COVID-19 deaths related to deaths caused by other groups over time?"),
+  p(paste("The purpose of these charts is to compare the trend of death counts caused by COVID-19 and other causes, categorized by age groups, over time.",
+          "Here, we use the following variables from the given data sets in order to aggregate and plot the visualizations below:")),
+  br(),
+  tags$ol(
+    tags$li(paste('Year:', 'Range of year to plot, from 2020 - 2022')),
+    tags$li(paste('Cause of Deaths:', 'COVID-19, Influenza, and Pneumonia')),
+    tags$li(paste('State:', 'States name in United States')),
+    tags$li(paste('Age Group:', 'Range of age in different groups (5 to 10 increments)'))
+  ),
   fluidRow(
-    column(1, selectInput("ageSelect", label = h3("Age Group"), 
+    column(selectInput("ageSelect", label = h4("Age Group"), 
                           choices = age_group_choice, 
-                          selected = 1)),
-    column(2, selectInput("stateSelect", label = h3("State"),
+                          selected = 1), width = 4),
+    column(selectInput("stateSelect", label = h4("State"),
                           choices = state_choice,
-                          selected = 1)),
-    column(3, selectInput("timeSelect", label = h3("Time"),
+                          selected = 1), width = 4),
+    column(selectInput("timeSelect", label = h4("Time"),
                           choices = c("By Month", "By Year"),
-                          selected = 1))
+                          selected = 1), width = 4)
   ),
   dygraphOutput("evolutionPlot"),
   hr(),
-  dygraphOutput("covid_pneu_plot")
+  p(paste('In addition, we also look into the evolution of death counts from COVID-19 patients with Pneumonia:')),
+  dygraphOutput("covid_pneu_plot"),
+  tags$footer("___")
 )
 
-
-
+######################
+### CONCLUSION TAB ###
+######################
+conclusion <- tabPanel('Conclusion',
+  titlePanel('Takeaways'),
+  br(),
+  tags$h4(class = 'tableheader',
+          strong("Deaths Count by Different Causes Data Distribution")),
+  fluidRow(column = 12, align = 'center', tableOutput("summary_table")),
+  p(paste('Before we explore and discuss the takeaways from each question shown in the introduction page,',
+          'it is worth for us to take a look into the statistical distribution of death counts across different ccauses.',
+          'The table shown above summarizes the distribution, sorted by the average death count in descending order.',
+          'As we can see, across the different death causes we investigated, COVID-19 holds the highest average death count across',
+          'the year range 2020 - 2022. However, note that the maximum death count corresponds to Pneumonia. Additionally, we can also',
+          'see that the maximum death count from COVID-19 patients with Pneumonia is more than half of the death counts caused solely by',
+          'Pneumonia or COVID-19. This is an interesting observation since we can note that most of the deaths are associated with',
+          'severe lungs illness.')),
+  br(),
+  # answers to each question
+  # question 1
+  tags$h4(class = 'tableheader',
+          strong('How does the total death count due to COVID-19 differ from other long term causes across state in different time period?')),
+  p(paste('Based on our observation, it is worth to note that the differences between the log of the death count due to different causes',
+          'across different year range are similar to one another.',
+          'This means that the differences of the death count distribution across different causes are consistent throughout the period,',
+          'meaning our insights are applicable for a good range of years throughout this pandemic period across different states.',
+          'It is clearly visible that the top 3 states with the highest death count are California, Texas, and Florida.',
+          'As a result, with this observation, we can direct our focus onto these 3 states in order to help prevent the spread of COVID-19 diseases',
+          'as well as the exposures of certain age groups to certain severe diseases like Influenza and pneumonia.',
+          'Additionally, it is important to note that this insight relies heavily onto the data quality.',
+          'Some causes and states data may be more complete compared to one another. In response to this,',
+          'our group has performed data checks and clean data as needed to remove outliers and NA values in order to visualize the information as appropriate.'))
+)
 
 
 # UI PAGES
 ui <- fluidPage(theme = 'style.css',
-  h1(
+  h2(
     strong("The Relationship Between COVID-19 and Other Causes of Deaths"),
     style = "color: Green"),
-  h2("Alan Zheng, Ivanna Maxwell, Kyle Sorstokke"),
+  h3("Alan Zheng, Ivanna Maxwell, Kyle Sorstokke"),
   tabsetPanel(
     intro_tab,
     rank_tab,
-    evolution_tab
+    evolution_tab,
+    conclusion
   )
 )
