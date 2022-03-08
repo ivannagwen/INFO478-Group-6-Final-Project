@@ -143,15 +143,15 @@ state_choice <- na.omit(unique(covid_df$State))
 evolution_tab <- tabPanel(
   "Trend of COVID-19 deaths vs Other Diseases' deaths",
   fluidRow(
-    selectInput("ageSelect", label = h3("Age Group"), 
-                choices = age_group_choice, 
-                selected = 1),
-    selectInput("stateSelect", label = h3("State"),
-                choices = state_choice,
-                selected = 1),
-    selectInput("timeSelect", label = h3("Time"),
-                choices = c("By Month", "By Year"),
-                selected = 1)
+    column(1, selectInput("ageSelect", label = h3("Age Group"), 
+                          choices = age_group_choice, 
+                          selected = 1)),
+    column(2, selectInput("stateSelect", label = h3("State"),
+                          choices = state_choice,
+                          selected = 1)),
+    column(3, selectInput("timeSelect", label = h3("Time"),
+                          choices = c("By Month", "By Year"),
+                          selected = 1))
   ),
   dygraphOutput("evolutionPlot")
 )
