@@ -122,6 +122,8 @@ death_cause_widget <- radioButtons(
   selected = 'Total Deaths'
 )
 
+
+# Rank tab
 rank_tab <- tabPanel(
   "COVID-19 vs. Other Long Term Death Causes Rank by State",
   sidebarLayout(
@@ -131,6 +133,27 @@ rank_tab <- tabPanel(
     mainPanel(plotlyOutput('rank_comparison'))
   )
 )
+
+# Evolution Tab
+age_group_choice <- na.omit(unique(covid_df$Age.Group))
+state_choice <- na.omit(unique(covid_df$State))
+
+evolution_tab <- tabPanel(
+  "Trend of COVID-19 deaths vs Other Diseases' deaths",
+  fluidRow(
+    selectInput("ageSelect", label = h3("Age Group"), 
+                choices = age_group_choice, 
+                selected = 1),
+    selectInput("stateSelect", label = h3("State"),
+                choices = state_choice,
+                selected = 1),
+    selectInput("timeSelect", label = h3("Time"),
+                choices = c("By Month", "By Year"),
+                selected = 1)
+  ),
+  dygraphOutput("evolutionPlot")
+)
+
 
 
 
@@ -143,6 +166,7 @@ ui <- fluidPage(theme = 'style.css',
   h2("Alan Zheng, Ivanna Maxwell, Kyle Sorstokke"),
   tabsetPanel(
     intro_tab,
-    rank_tab
+    rank_tab,
+    evolution_tab
   )
 )

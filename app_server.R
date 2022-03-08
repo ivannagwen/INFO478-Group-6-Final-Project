@@ -3,6 +3,38 @@ server <- function(input, output) {
   covid_df <- read.csv('data/covid19_2020_2022.csv')
   death_df <- read.csv('data/death_count_2020_2022.csv')
   
+  
+  compared <- reactive({
+    compare_data <- covid_df
+    compare_data$Start.Date <- mdy(compare_data$Start.Date)
+    compare_data <- compare_data %>%
+      filter(Group == input$timeSelect,
+             State == input$stateSelect,
+             Sex == "All Sexes",
+             Age.Group == input$ageSelect) %>%
+      select(Start.Date, COVID.19.Deaths, Pneumonia.Deaths, Influenza.Deaths)
+    
+    rDeath <- xts(compare_data, order.by = compare_data$Start.Date)
+  })
+  
+  
+  output$sliderValue <- renderPrint({ input$yearSlider })
+  output$evolutionPlot <- renderDygraph(
+    dygraph(compared(), main = "Trend of COVID-19 deaths vs Other Diseases' deaths",
+                               ylab = "Total Death") %>%
+      dyAxis("y", valueRange = c(0, 50000 + as.numeric(max(compared()$COVID.19.Deaths))), independentTicks = TRUE, label = 'Total Death (COID-19 and Pneumonia)') %>%
+      dyAxis("y2", valueRange = c(0, 2000 + as.numeric(max(compared()$Influenza.Deaths))), independentTicks = TRUE, label = 'Total Death (Influenza)') %>%
+      dyOptions(stepPlot = TRUE, fillGraph = TRUE) %>%
+      dyCrosshair(direction = "vertical") %>%
+      dyHighlight(highlightCircleSize = 5, highlightSeriesBackgroundAlpha = 0.5, hideOnMouseOut = FALSE)  %>%
+      dyUnzoom() %>%
+      dyLegend(width = 600) %>%
+      dySeries('COVID.19.Deaths', label = 'COVID-19 Deaths') %>%
+      dySeries('Pneumonia.Deaths', label = 'Pneumonia Deaths') %>%
+      dySeries("Influenza.Deaths", axis=('y2'), label = 'Influenza Deaths') %>%
+      dyRoller(rollPeriod = 1)
+  )
+  
   ## RANK COMPARISON OUTPUT ##
   output$rank_comparison <- renderPlotly({
     # wrangle data
