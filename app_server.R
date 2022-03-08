@@ -17,10 +17,21 @@ server <- function(input, output) {
     rDeath <- xts(compare_data, order.by = compare_data$Start.Date)
   })
   
+  total_covid_pneu <- reactive({
+    evo_data <- covid_data
+    evo_data$Start.Date <- mdy(evo_data$Start.Date)
+    evo_data <- evo_data %>%
+      filter(Group == input$timeSelect,
+             State == input$stateSelect,
+             Sex == "All Sexes",
+             Age.Group == input$ageSelect)
+    
+    prep_data <- xts(x = evo_data$Pneumonia.and.COVID.19.Deaths, order.by = evo_data$Start.Date)
+  })
   
   output$sliderValue <- renderPrint({ input$yearSlider })
   output$evolutionPlot <- renderDygraph(
-    dygraph(compared(), main = "Trend of COVID-19 deaths vs Other Diseases' deaths",
+    dygraph(compared(), main = "Trend of COVID-19 deaths vs Other Respiratory Diseases' deaths",
                                ylab = "Total Death") %>%
       dyAxis("y", valueRange = c(0, 50000 + as.numeric(max(compared()$COVID.19.Deaths))), independentTicks = TRUE, label = 'Total Death (COID-19 and Pneumonia)') %>%
       dyAxis("y2", valueRange = c(0, 2000 + as.numeric(max(compared()$Influenza.Deaths))), independentTicks = TRUE, label = 'Total Death (Influenza)') %>%
@@ -32,6 +43,17 @@ server <- function(input, output) {
       dySeries('COVID.19.Deaths', label = 'COVID-19 Deaths') %>%
       dySeries('Pneumonia.Deaths', label = 'Pneumonia Deaths') %>%
       dySeries("Influenza.Deaths", axis=('y2'), label = 'Influenza Deaths') %>%
+      dyRoller(rollPeriod = 1)
+  )
+  
+  output$covid_pneu_plot <- renderDygraph(
+    dygraph(total_covid_pneu(), main = "Covid 19 patients with Pneumonia Evolution", ylab = "Total Death") %>%
+      dySeries("V1", label = "Death") %>%
+      dyOptions(labelsUTC = TRUE, fillGraph=TRUE, fillAlpha=0.1, drawGrid = FALSE, colors="#D8AE5A") %>%
+      dyRangeSelector() %>%
+      dyCrosshair(direction = "vertical") %>%
+      dyHighlight(highlightCircleSize = 5, highlightSeriesBackgroundAlpha = 0.5, hideOnMouseOut = FALSE)  %>%
+      dyUnzoom() %>%
       dyRoller(rollPeriod = 1)
   )
   

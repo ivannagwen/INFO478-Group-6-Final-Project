@@ -141,7 +141,7 @@ age_group_choice <- na.omit(unique(covid_df$Age.Group))
 state_choice <- na.omit(unique(covid_df$State))
 
 evolution_tab <- tabPanel(
-  "Trend of COVID-19 deaths vs Other Diseases' deaths",
+  "Trend of COVID-19 deaths vs Other Respiratory Diseases' deaths",
   fluidRow(
     column(1, selectInput("ageSelect", label = h3("Age Group"), 
                           choices = age_group_choice, 
@@ -153,7 +153,9 @@ evolution_tab <- tabPanel(
                           choices = c("By Month", "By Year"),
                           selected = 1))
   ),
-  dygraphOutput("evolutionPlot")
+  dygraphOutput("evolutionPlot"),
+  hr(),
+  dygraphOutput("covid_pneu_plot")
 )
 
 
