@@ -50,7 +50,7 @@ server <- function(input, output) {
     rank_filtered <- rank_df %>%
       filter(Year == input$year_val) %>%
       filter(death_cause == input$death_cause_val) %>%
-      group_by(Year, State, death_cause) %>%
+      group_by(State, death_cause) %>%
       summarize(sum_deaths = sum(value, na.rm = TRUE))
 
     # get state maps data
@@ -66,9 +66,9 @@ server <- function(input, output) {
       geom_polygon(mapping = aes(x = long, y = lat,
                                  group = group, fill = log(sum_deaths),
                                  text = paste0('State: ', State, '<br>',
-                                               'Year: ', Year, '<br>',
                                                'Cause of Deaths: ', death_cause, '<br>',
-                                               'Total Count: ', sum_deaths))) +
+                                               'Total Count: ', sum_deaths, '<br>',
+                                               'Log of Total Count: ', log(sum_deaths)))) +
       scale_fill_gradient(name = "Log of Total Deaths Count by Specific Cause",
                           low = "yellow",
                           high = "red",

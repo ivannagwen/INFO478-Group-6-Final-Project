@@ -25,7 +25,7 @@ intro_tab <- tabPanel(
           "To be specific, here are the 3 questions we hope to answer throughout the project:")),
   br(),
   tags$ol(
-    tags$li("Where does COVID-19 rank related to other long-term causes grouped by specific factors such as location, age group, gender?"),
+    tags$li("How does the total death count due to COVID-19 differ from other long term causes across State in different time period?"),
     tags$li("Is there any correlations present between COVID-19 deaths rate and deaths caused by respiratory illnesses? How is the trend across different groups?"),
     tags$li("How is the trend of COVID-19 deaths related to deaths caused by other groups over time?")
   ),
@@ -67,7 +67,7 @@ intro_tab <- tabPanel(
     tags$h4(class = "tableheader", "Table indicating related columns:"),
     tags$table(class = "columns",
                tags$tr(
-                 tags$th("Rank of COVID-19 and Long Term Causes by Groups"),
+                 tags$th("Total Death Count due to COVID-19 and Long Term Causes by State in Different Years"),
                  tags$th("Relationship between Deaths Caused by COVID-19 and Other Respiratory Illnesses"),
                  tags$th("Trends of Deaths Caused by COVID-19 and Other Causes")
                ),
@@ -77,12 +77,12 @@ intro_tab <- tabPanel(
                  tags$td("Start Date / End Date")
                ),
                tags$tr(
-                 tags$td("Sex"),
+                 tags$td("Year"),
                  tags$td("Pneumonia Deaths"),
                  tags$td("COVID-19 and Pneumonia Deaths (Sum of deaths)")
                ),
                tags$tr(
-                 tags$td("Age Group"),
+                 tags$td("Deaths Count by Different Causes"),
                  tags$td("Influenza Deaths"),
                  tags$td("Influenza Deaths")
                )
@@ -126,6 +126,8 @@ death_cause_widget <- radioButtons(
 # Rank tab
 rank_tab <- tabPanel(
   "COVID-19 vs. Other Long Term Death Causes Rank by State",
+  titlePanel("How do relationships affect the alcohol consumption
+             of students?"),
   sidebarLayout(
     sidebarPanel(year_widget,
                  death_cause_widget,
