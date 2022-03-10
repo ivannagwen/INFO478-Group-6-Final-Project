@@ -185,7 +185,7 @@ corr_tab <- tabPanel(
   br(),
   tags$ol(
     tags$li(paste('Age Group:', 'Age group for which to view death counts')),
-    tags$li(paste('Sex:', 'Set the sex(es) for which to view data')),
+    tags$li(paste('Sex:', 'Set the sex for which to view data')),
     tags$li(paste('Illness:', 'Pick the illness to compare against COVID'))
   ),
   br(),

@@ -77,7 +77,12 @@ server <- function(input, output) {
     
     correlationPlot <- ggplot(corr_df, mapping = aes(x=Covid, y=Deaths,
                                                      color = Respiratory.Illness))+
-      geom_point()
+      geom_point() +
+      theme(plot.title = element_text(hjust = 0.5,size = 10, lineheight = 0.8)) +
+      labs(color = "Respiratory Illness",
+           title = "Monthly COVID-19 Deaths Compared to \n Other Respiratory Illness Deaths") +
+      xlab("COVID-19 Deaths") +
+      ylab("Other Respiratory Illness Deaths")
     
     correlationPlot <- ggplotly(correlationPlot)
     
