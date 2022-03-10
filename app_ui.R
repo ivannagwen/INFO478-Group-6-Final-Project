@@ -152,7 +152,7 @@ rank_tab <- tabPanel(
 ###### Correlation Tab ######
 #############################
 
-age_group_choice <- na.omit(unique(corr_df$Age.Group))
+age_group_choice <- na.omit(unique(covid_df$Age.Group))
 age_group_val <- checkboxGroupInput(
   inputId =  'age_group_val',
   label = 'Select Age Group',
@@ -160,7 +160,7 @@ age_group_val <- checkboxGroupInput(
   selected = "50-64 years"
 )
 
-sex_choice <- na.omit(unique(corr_df$Sex))
+sex_choice <- na.omit(unique(covid_df$Sex))
 sex_choice_val <- checkboxGroupInput(
   inputId =  'sex_choice_val',
   label = 'Select Sex',
