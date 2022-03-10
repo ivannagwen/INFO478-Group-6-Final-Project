@@ -7,6 +7,7 @@ library(dplyr)
 library(stringr)
 library(lubridate)
 library(dygraphs)
+library(tidyverse)
 library(xts)
 
 # source UI and server

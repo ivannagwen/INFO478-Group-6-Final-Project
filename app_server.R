@@ -57,6 +57,33 @@ server <- function(input, output) {
       dyRoller(rollPeriod = 1)
   )
   
+  ##############################
+  ###### Correlation plot ######
+  ##############################
+  output$correlationPlot <- renderPlotly({
+    corr_df <- covid_df %>%
+      filter(Group == "By Month") %>%
+      mutate(Covid = COVID.19.Deaths - Pneumonia.and.COVID.19.Deaths) %>%
+      mutate(Pneumonia = Pneumonia.Deaths - Pneumonia.and.COVID.19.Deaths) %>%
+      rename(Influenza = Influenza.Deaths) %>%
+      select(State, Sex, Age.Group, Influenza, Pneumonia, Covid, Group) %>%
+      pivot_longer(cols = c('Pneumonia', 'Influenza'),
+                   names_to = 'Respiratory.Illness') %>%
+      rename(Deaths = value) %>%
+      filter(Age.Group == input$age_group_val) %>%
+      filter(Sex == input$sex_choice_val) %>%
+      filter(Respiratory.Illness == input$illness_val)
+
+    
+    correlationPlot <- ggplot(corr_df, mapping = aes(x=Covid, y=Deaths,
+                                                     color = Respiratory.Illness))+
+      geom_point()
+    
+    correlationPlot <- ggplotly(correlationPlot)
+    
+    return(correlationPlot)
+  })
+  
   ## RANK COMPARISON OUTPUT ##
   output$rank_comparison <- renderPlotly({
     # wrangle data

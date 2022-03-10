@@ -147,6 +147,57 @@ rank_tab <- tabPanel(
   )
 )
 
+
+#############################
+###### Correlation Tab ######
+#############################
+
+age_group_choice <- na.omit(unique(corr_df$Age.Group))
+age_group_val <- checkboxGroupInput(
+  inputId =  'age_group_val',
+  label = 'Select Age Group',
+  choices = age_group_choice,
+  selected = "50-64 years"
+)
+
+sex_choice <- na.omit(unique(corr_df$Sex))
+sex_choice_val <- checkboxGroupInput(
+  inputId =  'sex_choice_val',
+  label = 'Select Sex',
+  choices = sex_choice,
+  selected = "Male"
+)
+
+illness_choice <- c('Pneumonia', 'Influenza')
+illness_val <- checkboxGroupInput(
+  inputId =  'illness_val',
+  label = 'Select Respiratory Illness',
+  choices = illness_choice,
+  selected = c("Pneumonia", "Influenza")
+)
+
+
+corr_tab <- tabPanel(
+  "Correlation of deaths from COVID-19 and other respiratory illnesses",
+  titlePanel("Is there any correlation present between COVID-19 deaths rate and deaths caused by respiratory illnesses? How is the trend across different groups?"),
+  p(paste("This interactive visualization compares monthly state total death counts for COVID",
+          "against those of other respiratory illnesses for select age groups and sexes.")),
+  br(),
+  tags$ol(
+    tags$li(paste('Age Group:', 'Age group for which to view death counts')),
+    tags$li(paste('Sex:', 'Set the sex(es) for which to view data')),
+    tags$li(paste('Illness:', 'Pick the illness to compare against COVID'))
+  ),
+  br(),
+  sidebarLayout(
+    sidebarPanel(age_group_val,
+                 sex_choice_val,
+                 illness_val,
+                 width = 4),
+    mainPanel(plotlyOutput('correlationPlot'))
+  )
+)
+
 #####################
 ### EVOLUTION TAB ###
 #####################
@@ -214,7 +265,19 @@ conclusion <- tabPanel('Conclusion',
           'as well as the exposures of certain age groups to certain severe diseases like Influenza and pneumonia.',
           'Additionally, it is important to note that this insight relies heavily onto the data quality.',
           'Some causes and states data may be more complete compared to one another. In response to this,',
-          'our group has performed data checks and clean data as needed to remove outliers and NA values in order to visualize the information as appropriate.'))
+          'our group has performed data checks and clean data as needed to remove outliers and NA values in order to visualize the information as appropriate.')),
+  tags$h4(class = 'tableheader', strong('Is there any correlation present between COVID-19 deaths rate and deaths caused by respiratory illnesses? How is the trend across different groups?')),
+  p(paste('There does not appear to be much correlation between deaths due to COVID-19 and',
+          'deaths due to influenza. Influenza deaths are fairly constant, with the expected',
+          'variation due to state population differences, even as COVID cases rise.',
+          'There appears to be some correlation between deaths due to COVID-19 and pneumonia,',
+          'although some of this trend can likely be explained by population as well.',
+          'Even after removing overlapping cases of death caused by both COVID and pneumonia,',
+          'the plot shows somewhat similar values for each in most observations.',
+          'These observed trends hold fairly constant across groups. There is some',
+          'variation, although it can likely be explained in part by the natural fluctuations',
+          'in illness transmission cycles rather than a true difference in illness',
+          'trends by age or sex.'))
 )
 
 
@@ -227,6 +290,7 @@ ui <- fluidPage(theme = 'style.css',
   tabsetPanel(
     intro_tab,
     rank_tab,
+    corr_tab,
     evolution_tab,
     conclusion
   )
