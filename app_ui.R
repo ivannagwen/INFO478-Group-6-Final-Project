@@ -277,7 +277,13 @@ conclusion <- tabPanel('Conclusion',
           'These observed trends hold fairly constant across groups. There is some',
           'variation, although it can likely be explained in part by the natural fluctuations',
           'in illness transmission cycles rather than a true difference in illness',
-          'trends by age or sex.'))
+          'trends by age or sex.')),
+  tags$h4(class = 'tableheader', strong('How is the trend of COVID-19 deaths related to deaths caused by other groups over time?')),
+  p(paste('According to the boxplot, we can observe an obvious similar trend between Covid-19 deaths and Penumonia',
+          'But at the same time, the trend of influenza has barely no similarity. Thus we can come up with the conclusion that Covid-19',
+          'do have impact on pnuemonia patient.',
+          'And observing from the evolution chart that shows the trend of Covid patient with penumonia, it has a similar trend compared to',
+          'the previous chart of Covid-19 patients'))
 )
 
 
